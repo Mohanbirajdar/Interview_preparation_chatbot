@@ -2,18 +2,18 @@ import streamlit as st
 import google.generativeai as genai
 
 # Configure the API key for Generative AI
-genai.configure(api_key= "GOOGLE_API_KEY")
+genai.configure(api_key="GOOGLE_API_KEY")
 
 # Function to generate interview questions
 def generate_interview_question(domain, level):
     prompt = f"Generate a {level} interview question for a candidate applying for {domain}."
-    response = genai.generate_message(model="models/gemini-1.5-flash", messages=[{"content": prompt}])
+    response = genai.generate_message(model="models/gemini-1.5-tuned", messages=[{"content": prompt}])
     return response['messages'][0]['content']
 
 # Function to provide feedback and improvement suggestions
 def suggest_improvements(answer, feedback):
     prompt = f"Given this interview answer: '{answer}', and the feedback: '{feedback}', suggest improvements."
-    response = genai.generate_message(model="models/gemini-1.5-flash", messages=[{"content": prompt}])
+    response = genai.generate_message(model="models/gemini-1.5-tuned", messages=[{"content": prompt}])
     return response['messages'][0]['content']
 
 # Start the Streamlit app
