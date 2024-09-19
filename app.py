@@ -8,13 +8,13 @@ genai.configure(api_key="GOOGLE_API_KEY")
 def generate_interview_question(domain, level):
     prompt = f"Generate a {level} interview question for a candidate applying for {domain}."
     response = genai.generate_message(model="models/gemini-1.5-tuned", messages=[{"content": prompt}])
-    return response['messages'][0]['content']
+    return response['candidates'][0]['content']
 
 # Function to provide feedback and improvement suggestions
 def suggest_improvements(answer, feedback):
     prompt = f"Given this interview answer: '{answer}', and the feedback: '{feedback}', suggest improvements."
     response = genai.generate_message(model="models/gemini-1.5-tuned", messages=[{"content": prompt}])
-    return response['messages'][0]['content']
+    return response['candidates'][0]['content']
 
 # Start the Streamlit app
 st.title("Interview Preparation Chatbot")
@@ -57,3 +57,4 @@ if st.session_state["questions_asked"] >= 1:
 else:
     if st.button("Ask First Question"):
         st.session_state["questions_asked"] = 1
+
