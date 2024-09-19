@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 
 # Configure the API key for Generative AI
-genai.configure(api_key='your_google_api_key')
+genai.configure(api_key='GOOGLE_API_KEY')
 
 # Function to generate interview questions
 def generate_interview_question(domain, level):
